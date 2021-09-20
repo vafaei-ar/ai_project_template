@@ -4,7 +4,7 @@ To run:
 
 First, you need to run 
 ```
-conda env create -f environment.yml
+conda env create -f conda.yaml
 ```
 to make the environment and 
 ```
