@@ -20,7 +20,6 @@ data_path = '../data/organmnist_axial.npz'
 data = np.load(data_path)
 
 test_images = data['test_images']
-print(test_images.shape)
 inds = np.random.randint(0,test_images.shape[0],5)
 
 for i,ii in enumerate(inds):

@@ -120,17 +120,17 @@ tags = {'model_path': model_path,
 mlflow.set_tags(tags)
 
 subplot_args = { 'ncols': n_sample,
-                 'figsize': (int(4*n_sample),1),
+                 'figsize': (int(4*n_sample),5),
                  'subplot_kw': {'xticks': [], 'yticks': []} }
 
 f, ax = plt.subplots(**subplot_args)
 for i in range(n_sample):
-    pred = model.predict(test_images[i,i+1])
+    pred = model.predict(test_images[i:i+1,:,:,None])
     title = str(np.argmax(pred))
-    ax[i].set_title(title, fontsize=40)
+    ax[i].set_title(title, fontsize=10)
     ax[i].imshow(test_images[i],cmap='gray')
 plt.tight_layout()
-figname = model_path+'_samples.jpg'
+figname = model_name[:-3]+'_samples.jpg'
 plt.savefig(figname,dpi=150)
 mlflow.log_artifact(figname)
 plt.close()

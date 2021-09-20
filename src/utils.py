@@ -44,7 +44,7 @@ def model_version(path,mode,model=None,df=None,prefix=''):
   else:
     inds = [int(i.split('v')[-1].split('_')[0]) for i in hist]
     last_ind = np.max(inds)
-
+  
   if mode=='save':
     assert not model is None,'model is not given!'
     now = datetime.now()
@@ -64,7 +64,8 @@ def model_version(path,mode,model=None,df=None,prefix=''):
     if last_ind==-1:
       return None
     # model = np.load(hist[last_ind])
-    model = keras.models.load_model(hist[last_ind])
+    model = tf.keras.models.load_model(hist[last_ind])
+
     return model
   else:
     assert 0,'mode error!'
