@@ -2,7 +2,7 @@
 This is a template of an AI project pipeline. 
 
 You can find the following example(s):
-- [The 1st example](example_1/README.md) is a minimal classification. 
+- [The 1st example](example_1) is a minimal classification. 
 - [The 2nd example](...) will be added later... 
 
 ----------------------------------------------------------------------
