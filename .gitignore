@@ -1,6 +1,6 @@
 data/*
 models/*
-scr/mlruns/*
+example_1/mlruns/*
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
