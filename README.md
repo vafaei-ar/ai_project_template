@@ -2,8 +2,8 @@
 This is a template of an AI project pipeline. 
 
 You can find the following example(s):
-- [The first example](example_1/README.md) is a minimal classification. 
-- [The first example](http://example.net/) is a minimal classification. 
+- [The 1st example](example_1/README.md) is a minimal classification. 
+- [The 2nd example](...) will be added later... 
 
 ----------------------------------------------------------------------
 A report also will help people to understand your methodology and results. 
