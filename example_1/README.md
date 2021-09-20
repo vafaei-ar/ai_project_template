@@ -4,9 +4,13 @@ To run:
 
 First, you need to run 
 ```
-conda create
+conda env create -f environment.yml
 ```
-Then you need to prepare the data sample by running:
+to make the environment and 
+```
+conda activate aitest
+```
+to get into it. Then you need to prepare the data sample by running:
 ```
 python 0-preparation.py
 ```
