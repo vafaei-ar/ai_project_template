@@ -18,7 +18,7 @@ It downloads the data into _data_ directory.
 Then you should run:
 
 ```
-mlflow run .
+mlflow run . --no-conda
 ```
 
 This will run `1-train.py` with the default parameters to train a model.
