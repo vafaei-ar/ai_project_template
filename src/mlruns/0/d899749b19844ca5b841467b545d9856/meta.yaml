@@ -1,0 +1,15 @@
+artifact_uri: file:///home/gf/works/repos/ai_project_template/src/mlruns/0/d899749b19844ca5b841467b545d9856/artifacts
+end_time: 1632133480015
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: d899749b19844ca5b841467b545d9856
+run_uuid: d899749b19844ca5b841467b545d9856
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1632132970071
+status: 4
+tags: []
+user_id: gf

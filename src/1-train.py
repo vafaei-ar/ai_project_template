@@ -3,6 +3,7 @@ import sys
 import mlflow
 import argparse
 import numpy as np
+from pathlib import Path
 import tensorflow as tf
 import mlflow.tensorflow
 from tqdm.keras import TqdmCallback
@@ -12,6 +13,8 @@ from utils import *
 
 # Enable auto-logging to MLflow to capture TensorBoard metrics.
 # mlflow.tensorflow.autolog()
+
+mlflow.start_run()
 
 parser = argparse.ArgumentParser()
 
@@ -34,9 +37,13 @@ aug_w = args.aug_w
 aug_h = args.aug_h
 aug_zoom = args.aug_zoom
 model_path = args.model_path
+n_sample = 3
 
-mlflow.start_run()
+#mlflow.start_run()
+#mlflow.set_tag("mlflow.runName", run_name)
+
 mlflow.set_tag("mlflow.runName", run_name)
+Path(model_path).mkdir(parents=True, exist_ok=True)
 
 data_path = '../data/organmnist_axial.npz'
 data = np.load(data_path)
@@ -75,12 +82,19 @@ lr_schedule = tf.keras.optimizers.schedules.ExponentialDecay(
                              decay_rate=0.95)
 opt = tf.keras.optimizers.Adam(learning_rate=lr_schedule)
 
-model = build_2dcond_model(shape,n_class,
-                           n_layers = 4,
-                           nch = 8,
-                           kernelsize=3,
-                           activation="relu",
-                           maxpool=0)
+
+try:
+    model = model_version(model_path,mode='load')
+    assert not model is None
+    print('model is loaded!')
+except:
+    model = build_2dcond_model(shape,n_class,
+                               n_layers = 4,
+                               nch = 8,
+                               kernelsize=3,
+                               activation="relu",
+                               maxpool=0)
+    print('training from scratch!')
 
 labeled_train_dataset = aug.flow(train_images, y_train, batch_size=batch_size)
 test_dataset = (val_images, y_test)
@@ -104,6 +118,23 @@ tags = {'model_path': model_path,
 
 # Set a batch of tags
 mlflow.set_tags(tags)
+
+subplot_args = { 'ncols': n_sample,
+                 'figsize': (int(4*n_sample),1),
+                 'subplot_kw': {'xticks': [], 'yticks': []} }
+
+f, ax = plt.subplots(**subplot_args)
+for i in range(n_sample):
+    pred = model.predict(test_images[i,i+1])
+    title = str(np.argmax(pred))
+    ax[i].set_title(title, fontsize=40)
+    ax[i].imshow(test_images[i],cmap='gray')
+plt.tight_layout()
+figname = model_path+'_samples.jpg'
+plt.savefig(figname,dpi=150)
+mlflow.log_artifact(figname)
+plt.close()
+
 
 mlflow.end_run()
 
