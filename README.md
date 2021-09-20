@@ -1,8 +1,11 @@
 # ai_project_template
 This is a template of an AI project pipeline. 
 
+You can find the following example(s):
+- [The first example](example_1/README.md) is a minimal classification. 
+- [The first example](http://example.net/) is a minimal classification. 
 
-
+----------------------------------------------------------------------
 A report also will help people to understand your methodology and results. 
 - You can start by giving a brief overview of the problem and what people have done before. We can call this part **Introduction**. 
 - Then, you can write about the data set. How you prepared. You need to describe it and put the relevant reference if you have downloaded the data.
